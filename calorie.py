@@ -1,9 +1,11 @@
+from temperature import Temperature
 class Calorie:
     """Represents optimal calorie amount a person needs to take today"""
 
     def __init__(self, weight, height, age, temperature):
         self.weight = weight
         self.height = height
+        self.age = age
         self.temperature = temperature
 
     def calculate(self):
@@ -12,4 +14,6 @@ class Calorie:
 
 
 if __name__ == "__main__":
-    pass
+    temperature = Temperature(conuntry='italy', city='milan').get()
+    calorie = Calorie(weight=70, height=175, age=32, temperature=temperature)
+    print(calorie.calculate())
