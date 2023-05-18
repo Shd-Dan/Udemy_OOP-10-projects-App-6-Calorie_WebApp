@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Calorie Calculation Form</h2>
+<p>Fill in the form and click the button to know how many calories you need!</p>
+<p>Let's get some info about you first.</p>
+
+<form action="">
+    {{cal_form.weight.label}} {{cal_form.weight}} <br>
+    {{cal_form.height.label}} {{cal_form.height}} <br>
+    {{cal_form.age.label}} {{cal_form.age}}
+    <hr>
+    <p>Today's weather counts too.</p>
+    <p>Let's get info about you first.</p>
+    {{cal_form.city.label}} {{cal_form.city}} <br>
+    {{cal_form.country.label}} {{cal_form.country}} <br>
+    {{cal_form.button}}
+</form>
+</body>
+</html>

@@ -14,3 +14,21 @@ Objects: Calorie:
             city
             get()
             
+
+Steps:
+1) calorie.py initialized where calorie class describe calculate method and __init__ parameters
+2) temperature.py initialized where scraping of temperature data is described. Scraping is executed by requests and
+    selectorlib Extractor libraries. .yaml format file is introduced.
+3) main.py describes the intersection of classes and methods, center commanding file.
+    a: flask lib used as for webpage linking. MethodView class's add_url_rule() with view_func: ,as_view method used
+    b: logic is in get() method we construct a link to html: by render_template of flask, directory name must be templates
+        and css files
+        In html we can link by double curly brackets and url_for() method with name parameter of add_url_rule()
+
+4: to link forms of CalorieForm class instance and html SpringFields of wtforms is used
+tab: in CalorieForm we create widgets by StringField methods, then initialize in get() method of CalorieFormPage class
+tab: an instance of CalorieForm and add as parameter to render_template().
+tab: Link syntax in calorie_form_page.html is double brackets. Variable of CaloriesForm initialized in CalorieFormPage get()
+tab: is followed by dot and widget name and widget's parameter as label.
+
+5: Button is added by SubmitField class of wtforms lib
