@@ -3,8 +3,8 @@ from selectorlib import Extractor
 
 
 class Temperature:
-    """
-    Represent a temperature value extracted from the timeanddate.com/weather webpage
+    """A scraper that uses yaml file to read xpath of a value in needs to extract from the
+        timeanddate.com/weather/ url
     """
     headers = {
         'pragma': 'no-cache',
@@ -15,42 +15,35 @@ class Temperature:
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
         'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
     }
-    base_url = 'https://www.timeanddate.com/weather/'
-    yml_path = 'temperature.yaml'
+    base_url = "https://www.timeanddate.com/weather/"
+    yaml_path = "temperature.yaml"
 
     def __init__(self, country, city):
-        self.country = country.replace(' ', '-')
-        self.city = city.replace('', '-')
+        self.country = country.replace(" ", "-")
+        self.city = city.replace(" ", "-")
 
     def _build_url(self):
-        """Builds url address"""
-        url = self.base_url + self.country + '/' + self.city
+        """Builds an url string adding country and city"""
+        url = self.base_url + self.country + "/" + self.city
         return url
 
     def _scrape(self):
+        """Extracts a value as instructed a yaml file and returns a dictionary"""
         url = self._build_url()
+        extractor = Extractor.from_yaml_file(self.yaml_path)
         req = requests.get(url, headers=self.headers)
-        cont = req.content
-        cont = req.text
-        extract = Extractor.from_yaml_file(self.yml_path)
-        middle = extract.extract(cont)
-        return middle
+        full_content = req.text
+        raw_content = extractor.extract(full_content)
+
+        return raw_content
 
     def get(self):
-        final_scrape = self._scrape()
-        res = float(final_scrape['temp'].replace('°C', '').strip())
-        return res
+        """Cleans the output of _scrape()"""
+        scraped_content = self._scrape()
+
+        return float(scraped_content['temp'].replace('°C', '').strip())
 
 
-#     def get(self):
-#         req = requests.get(f'https://www.timeanddate.com/weather/{self.country}/{self.city}')
-#         cont = req.content
-#         cont = req.text
-#         extract = Extractor.from_yaml_file("temperature.yaml")
-#         middle = extract.extract(cont)
-#         res = float(middle['temp'].replace('\xa0°C', ''))
-#         return res
-
-
-temp = Temperature(country='kazakhstan', city='almaty')
-print(temp.get())
+if __name__ == "__main__":
+    temperature = Temperature(country='usa', city='new york')
+    print(temperature.get())
