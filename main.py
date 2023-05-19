@@ -1,7 +1,7 @@
 """Import Flask and wtforms"""
 from flask.views import MethodView
 from wtforms import Form, StringField, SubmitField
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 # Flask is an object that represents a web app
 
@@ -20,6 +20,12 @@ class CalorieFormPage(MethodView):
         # initialize CalorieForm instance
         calorie_form = CalorieForm()
         return render_template('calorie_form_page.html', cal_form=calorie_form)
+
+    def post(self):
+        # Data entered in the form is got by CalorieForm instance initiating and request method of flask
+        cal_form = CalorieForm(request.form)
+        weight = cal_form.weight.data
+        return weight
 
 
 class CalorieForm(Form):
