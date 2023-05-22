@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="static/main.css">
 </head>
 <body>
 <h2>Calorie Calculation Form</h2>
@@ -18,6 +19,7 @@
     <p>Let's get info about you first.</p>
     {{cal_form.city.label}} {{cal_form.city}} <br>
     {{cal_form.country.label}} {{cal_form.country}} <br>
+
     {{cal_form.button}} <br>
     {% if result %}
     You need {{kcal}} calories (kcal) today
