@@ -18,7 +18,10 @@
     <p>Let's get info about you first.</p>
     {{cal_form.city.label}} {{cal_form.city}} <br>
     {{cal_form.country.label}} {{cal_form.country}} <br>
-    {{cal_form.button}}
+    {{cal_form.button}} <br>
+    {% if result %}
+    You need {{kcal}} calories (kcal) today
+    {% endif %}
 </form>
 </body>
 </html>

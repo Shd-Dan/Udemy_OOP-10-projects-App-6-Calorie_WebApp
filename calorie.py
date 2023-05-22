@@ -16,6 +16,6 @@ class Calorie:
 
 
 if __name__ == "__main__":
-    temperature = Temperature(country='italy', city='milan').get()
+    temperature = Temperature(country='spain', city='madrid').get()
     calorie = Calorie(weight=70, height=175, age=32, temperature=temperature)
     print(calorie.calculate())
